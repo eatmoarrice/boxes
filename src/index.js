@@ -16,7 +16,7 @@ function reducer(state = initialState, action) {
 	if (action.type === "ADD") {
 		state.count++;
 	} else if (action.type === "TAKE") {
-		state.count = state.count - action.payload.num;
+		if (state.count !== 0) state.count = state.count - action.payload.num;
 	} else if (action.type === "colorForAll") {
 		state.colorCode = action.payload.color;
 	} else if (action.type === "IndividualColor") {
