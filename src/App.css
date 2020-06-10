@@ -21,6 +21,11 @@
 	color: white;
 }
 
+.myButton:active,
+.myButton:focus {
+	outline: 0;
+}
+
 .myButton:hover {
 	filter: drop-shadow(0px 0px 4px #2c2c58cc);
 }
