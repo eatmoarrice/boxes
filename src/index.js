@@ -14,7 +14,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
 	if (action.type === "ADD") {
-		state.count++;
+		state.count = state.count + action.payload.num;
 	} else if (action.type === "TAKE") {
 		if (state.count !== 0) state.count = state.count - action.payload.num;
 	} else if (action.type === "colorForAll") {

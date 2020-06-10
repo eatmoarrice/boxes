@@ -46,3 +46,12 @@
 .textInBox {
 	text-shadow: 1px 1px rgba(0, 0, 0, 0.342);
 }
+
+.numberInputBox {
+	width: 50px;
+	margin: 5px;
+}
+
+.colorInputBox {
+	margin: 5px;
+}

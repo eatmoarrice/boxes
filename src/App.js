@@ -4,17 +4,18 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import Box from "./components/Box";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+let num = 1;
 function App() {
 	let count = useSelector((state) => state.count);
 	let colorCode = useSelector((state) => state.colorCode);
+
 	let boxes = [];
 	let dispatch = useDispatch();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 	};
-	const increaseNum = () => {
-		dispatch({ type: "ADD" });
+	const changeNum = (value) => {
+		num = parseInt(value);
 	};
 
 	const renderBoxes = () => {
@@ -30,12 +31,19 @@ function App() {
 			<h1 className="title">Pretty Boxes</h1>
 			<h2>Total: {count}</h2>
 			<div className="d-flex justify-content-center buttons">
-				<button className="myButton" onClick={() => increaseNum()}>
+				<button className="myButton" onClick={() => dispatch({ type: "ADD", payload: { num: num } })}>
 					Increment
 				</button>
-				<button className="myButton" onClick={() => dispatch({ type: "TAKE", payload: { num: 1 } })}>
+				<button className="myButton" onClick={() => dispatch({ type: "TAKE", payload: { num: num } })}>
 					Decrement
 				</button>
+				<form onSubmit={handleSubmit}>
+					<label>
+						Step:
+						<input className="numberInputBox" type="number" onChange={(e) => changeNum(e.target.value)} />
+					</label>
+					{/* <input type="submit" value="Submit" /> */}
+				</form>
 				<button className="myButton" onClick={() => dispatch({ type: "TAKE", payload: { num: count } })}>
 					RESET
 				</button>
@@ -43,7 +51,7 @@ function App() {
 			<form onSubmit={handleSubmit}>
 				<label>
 					Color:
-					<input type="text" onChange={(e) => dispatch({ type: "colorForAll", payload: { color: e.target.value } })} />
+					<input className="colorInputBox" type="text" onChange={(e) => dispatch({ type: "colorForAll", payload: { color: e.target.value } })} />
 				</label>
 				{/* <input type="submit" value="Submit" /> */}
 			</form>
