@@ -42,21 +42,19 @@ function App() {
 						Step:
 						<input className="numberInputBox" type="number" onChange={(e) => changeNum(e.target.value)} />
 					</label>
-					{/* <input type="submit" value="Submit" /> */}
 				</form>
-				<button className="myButton" onClick={() => dispatch({ type: "TAKE", payload: { num: count } })}>
-					RESET
-				</button>
 			</div>
 			<form onSubmit={handleSubmit}>
 				<label>
 					Color:
 					<input className="colorInputBox" type="text" onChange={(e) => dispatch({ type: "colorForAll", payload: { color: e.target.value } })} />
 				</label>
-				{/* <input type="submit" value="Submit" /> */}
+				<button className="myButton" onClick={() => dispatch({ type: "TAKE", payload: { num: count } })}>
+					RESET
+				</button>
 			</form>
 			<div className="container">
-				<div className="row">{renderBoxes()}</div>
+				<div className="row justify-content-md-start justify-content-center">{renderBoxes()}</div>
 			</div>
 		</div>
 	);

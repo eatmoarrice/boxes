@@ -9,14 +9,11 @@
 	border: 1px solid black;
 }
 
-.buttons > * {
+.myButton {
 	margin: 10px;
 	border: none;
 	border-radius: 20px;
 	padding: 10px;
-}
-
-.myButton {
 	background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
 	color: white;
 }
@@ -59,4 +56,5 @@
 
 .colorInputBox {
 	margin: 5px;
+	padding: 10px;
 }
