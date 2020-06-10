@@ -21,7 +21,9 @@ function reducer(state = initialState, action) {
 		state.colorCode = action.payload.color;
 	} else if (action.type === "IndividualColor") {
 		console.log("reducer", action.payload.ordinal);
-		state.individualColor[action.payload.ordinal] = action.payload.color;
+		state.individualColor[action.payload.ordinal] = {};
+		state.individualColor[action.payload.ordinal].bg = action.payload.color;
+		// state.individualColor[action.payload.ordinal].color = action.payload.color;
 		state.individualColor = { ...state.individualColor };
 		console.log("ddddd", state.individualColor[action.payload.ordinal]);
 	}

@@ -3,8 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Box(props) {
 	let ogCode = useSelector((state) => state.colorCode);
+	let textColor = "black";
+	let bg = ogCode;
 	// let colorCode = ogCode;
 	let individualColor = useSelector((state) => state.individualColor);
+
+	if (individualColor[`box${props.ordinal}`] && individualColor[`box${props.ordinal}`].color) {
+		textColor = individualColor[`box${props.ordinal}`].color;
+	}
+
+	if (individualColor[`box${props.ordinal}`] && individualColor[`box${props.ordinal}`].bg) {
+		bg = individualColor[`box${props.ordinal}`].bg;
+	}
+
+	if (props.ordinal > 5) {
+		textColor = "red";
+	}
 
 	let dispatch = useDispatch();
 	const handleSubmit = (e) => {
@@ -21,27 +35,17 @@ export default function Box(props) {
 
 	return (
 		<div>
-			{individualColor[`box${props.ordinal}`] ? (
-				<div className="box" style={{ backgroundColor: individualColor[`box${props.ordinal}`] }}>
-					<form onSubmit={handleSubmit}>
-						<label>
-							Color:
-							<input type="text" onChange={(e) => calculateColor(e.target.value)} />
-						</label>
-						{/* <input type="submit" value="Submit" /> */}
-					</form>
-				</div>
-			) : (
-				<div className="box" style={{ backgroundColor: ogCode }}>
-					<form onSubmit={handleSubmit}>
-						<label>
-							Color:
-							<input type="text" onChange={(e) => calculateColor(e.target.value)} />
-						</label>
-						{/* <input type="submit" value="Submit" /> */}
-					</form>
-				</div>
-			)}
+			<div className="box" style={{ backgroundColor: bg }}>
+				<form onSubmit={handleSubmit}>
+					<label>
+						<span className="textInBox" style={{ color: textColor }}>
+							Box {props.ordinal + 1}
+						</span>
+						<input type="text" onChange={(e) => calculateColor(e.target.value)} />
+					</label>
+					{/* <input type="submit" value="Submit" /> */}
+				</form>
+			</div>
 		</div>
 	);
 }
